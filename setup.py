@@ -1,6 +1,6 @@
 from setuptools import setup
 
-long_description = open("README.md").read()
+long_description = open("README.rst").read()
 
 # Version info -- read without importing
 _locals = {}
@@ -22,5 +22,5 @@ setup(
     },
     packages=["glitch_forge"],
     python_requires=">=3.10",
-    install_requires=[],
+    install_requires=["PyQt6>=6.8.1"],
 )
