@@ -4,6 +4,7 @@ from glitch_forge.parameter import Param
 
 
 class TestClass(Glitcher):
+    # adding some parameters to our demo class(all parameters have different types)
     param_a: Param = Param(None, int, "param_a")
     param_b: Param = Param(None, float, "param_b")
     param_c: Param = Param(None, str, "param_c")
@@ -11,15 +12,20 @@ class TestClass(Glitcher):
 
     def __init__(self):
         super().__init__(
+            # assigning the function to be called when the button is pressed
             launch_func=test_function,
+            # Setting custom launch button label
             launch_button_label="Print values",
+            # Setting custom window title
             window_title="Test Window",
         )
         self.show_window()
 
 
+# This function will be called when the button is pressed
 def test_function(base_class: TestClass):
-    # This function will be called when the button is pressed
+    # This function will print the values of the parameters 20 times and then exits
+    # It's useful to see ability to change values via GUI during runtime
     iterations = 20
     for i in range(20):
         print(f"{base_class.param_a.val=}")
@@ -34,4 +40,5 @@ def test_function(base_class: TestClass):
 
 
 if __name__ == "__main__":
+    # creating demo class with a few parameters
     TestClass()
