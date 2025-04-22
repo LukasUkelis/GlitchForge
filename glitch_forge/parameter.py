@@ -4,13 +4,40 @@ T = TypeVar("T", int, float, str, bool)
 
 
 class Param(Generic[T]):
+    """
+    A generic parameter class that encapsulates a value, its type, and additional metadata.
+    Attributes:
+        val (T | None): The current value of the parameter. Can be None.
+        tooltip (str | None): An optional tooltip providing additional information about the parameter.
+        placeholder (str | None): An optional placeholder text for the parameter.
+        label (str): A label describing the parameter.
+        var_type (type[T]): The type of the parameter's value.
+        min_val (T | None): The minimum allowable value for the parameter. Can be None.
+        max_val (T | None): The maximum allowable value for the parameter. Can be None.
+    Args:
+        val (T | None): The initial value of the parameter. Can be None.
+        var_type (type[T]): The type of the parameter's value.
+        label (str | None): A label describing the parameter. If None, no label is assigned.
+        min_val (T | None, optional): The minimum allowable value for the parameter. Defaults to None.
+        max_val (T | None, optional): The maximum allowable value for the parameter. Defaults to None.
+        tooltip (str | None, optional): An optional tooltip providing additional information about the parameter. Defaults to None.
+        placeholder (str | None, optional): An optional placeholder text for the parameter. Defaults to None.
+    """
+
     val: T | None
+    """The current value of the parameter"""
     tooltip: str | None
+    """An optional tooltip providing additional information about the parameter on hover"""
     placeholder: str | None
+    """An optional placeholder text for the parameter"""
     label: str
+    """A label describing the parameter"""
     var_type: type[T]
+    """The type of the parameter's value"""
     min_val: T | None
+    """The minimum allowable value for the parameter"""
     max_val: T | None
+    """The maximum allowable value for the parameter"""
 
     def __init__(
         self,

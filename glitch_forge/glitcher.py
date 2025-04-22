@@ -8,12 +8,35 @@ from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
 
 
 class Glitcher:
+    """Glitcher is a class responsible for managing the main application window and system tray icon
+    for a GUI-based application. It provides functionality to initialize and display the main
+    window, set up a system tray icon with a context menu, and handle application launch behavior.
+    Attributes:
+        window_title (str): The title of the main application window.
+        window (ui.GuiWindow): The main application window instance.
+        app (QApplication): The QApplication instance managing the GUI application.
+        window_icon (Path): The path to the icon used for the window and system tray.
+        launch_func (Callable | None): An optional function to be executed when the launch button is clicked.
+        launch_button_label (str): The label text for the launch button.
+    Methods:
+        __init__(window_title, window_icon, launch_func, launch_button_label):
+            Initializes the Glitcher instance with the specified parameters.
+        show_window():
+            Sets up the QApplication, main window, and system tray icon, and creates a context
+            menu for the tray icon with options to show the main window and quit the application."""
+
     window_title: str
+    """The title of the main application window"""
     window: ui.GuiWindow
+    """The main application window instance"""
     app: QApplication
+    """The QApplication instance managing the GUI application"""
     window_icon: Path
+    """The path to the icon used for the window and system tray"""
     launch_func: Callable | None
+    """An optional function to be executed when the launch button is clicked"""
     launch_button_label: str
+    """The label text for the launch button"""
 
     def __init__(
         self,
