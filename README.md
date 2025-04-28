@@ -1,5 +1,5 @@
 # Welcome to GlitchForge!
-========================
+
 
 **GlitchForge** is a lightweight Python library for building simple, responsive GUI applications in minutes. It is designed for rapid system development, testing, and prototyping, enabling you to easily expose parameters to the user and launch functions dynamically.
 
