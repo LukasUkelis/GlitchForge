@@ -6,10 +6,11 @@ from glitch_forge.parameter import Param
 
 class TestClass(Glitcher):
     # adding some parameters to our demo class(all parameters have different types)
-    param_a: Param = Param(None, int, "param_a")
-    param_b: Param = Param(None, float, "param_b")
-    param_c: Param = Param(None, str, "param_c")
-    param_d: Param = Param(None, bool, "param_d")
+    param_a: Param[int] = Param(val=None, var_type=int, label="param_a")
+    # If you want for typing to work, you need to use strict typing like: Param[float]
+    param_b: Param[float] = Param(val=None, var_type=float, label="param_b")
+    param_c: Param[str] = Param(val=None, var_type=str, label="param_c")
+    param_d: Param[bool] = Param(val=None, var_type=bool, label="param_d")
 
     def __init__(self):
         super().__init__(
@@ -20,6 +21,7 @@ class TestClass(Glitcher):
             # Setting custom window title
             window_title="Test Window",
         )
+        # Calling the parent class constructor to initialize the GUI
         self.show_window()
         sys.exit(self.app.exec())
 
