@@ -1,3 +1,4 @@
+import sys
 import time
 from glitch_forge.glitcher import Glitcher
 from glitch_forge.parameter import Param
@@ -20,6 +21,7 @@ class TestClass(Glitcher):
             window_title="Test Window",
         )
         self.show_window()
+        sys.exit(self.app.exec())
 
 
 # This function will be called when the button is pressed

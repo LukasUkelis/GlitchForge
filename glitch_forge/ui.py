@@ -75,8 +75,6 @@ class GuiWindow(QMainWindow):
     """Button to launch the function"""
     worker: Worker
     """Worker thread for executing the function"""
-    btn_save: QPushButton
-    """Button to save the configuration"""
 
     def __init__(
         self,
@@ -109,35 +107,19 @@ class GuiWindow(QMainWindow):
             with suppress(AttributeError):
                 attr = getattr(self.param_class, attr_name)
                 if isinstance(attr, parameter.Param):
-                    h_layout, label, widget = self.get_input_by_param(attr)
-                    self.inputs[attr_name] = Input(label, widget)
-                    layout.addLayout(h_layout)
+                    try:
+                        h_layout, label, widget = self.get_input_by_param(attr)
+                        self.inputs[attr_name] = Input(label, widget)
+                        layout.addLayout(h_layout)
+                    except ValueError as e:
+                        print(f"Error creating input for {attr_name}: {e}")
+                        continue
         return layout
 
     def actions_layout(self) -> QHBoxLayout:
-        """Layout for the action buttons (Save and Launch)"""
+        """Layout for the action buttons (Launch)"""
         h_layout = QHBoxLayout()
-        self.btn_save = QPushButton("Save cfg")
-        self.btn_save.setMinimumHeight(20)
-        self.btn_save.setMinimumWidth(100)
-        self.btn_save.setStyleSheet(
-            """
-        QPushButton {
-            background-color: orange;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-        }
-        QPushButton:hover {
-            background-color: #ffae42; /* lighter orange on hover */
-        }
-        """
-        )
-        h_layout.addWidget(self.btn_save)
         h_layout.addStretch()
-        if self.launch_func is None:
-            return h_layout
         self.btn_launch = QPushButton(self.launch_button_label)
         self.btn_launch.setMinimumHeight(20)
         self.btn_launch.setMinimumWidth(100)

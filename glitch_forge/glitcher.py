@@ -33,17 +33,17 @@ class Glitcher:
     """The QApplication instance managing the GUI application"""
     window_icon: Path
     """The path to the icon used for the window and system tray"""
-    launch_func: Callable | None
+    launch_func: Callable
     """An optional function to be executed when the launch button is clicked"""
     launch_button_label: str
     """The label text for the launch button"""
 
     def __init__(
         self,
+        launch_func: Callable,
+        launch_button_label: str = "Launch",
         window_title: str = ui.DEFAULT_WINDOW_TITLE,
         window_icon: Path = ui.DEFAULT_WINDOW_ICON,
-        launch_func: Callable | None = None,
-        launch_button_label: str = "Launch",
     ):
         self.window_title = window_title
         self.window_icon = window_icon
@@ -80,4 +80,3 @@ class Glitcher:
         menu.addAction(quit_action)
         tray_icon.setContextMenu(menu)
         tray_icon.show()
-        sys.exit(self.app.exec())
